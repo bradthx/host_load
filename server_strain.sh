@@ -1,7 +1,9 @@
 #!/bin/bash
-# Copyright (c) 2026 bradthx -- MIT License: https://opensource.org/licenses/MIT
+# Copyright (c) 2024 Brad Boegler <bradthx@gmail.com>
+# MIT License: https://opensource.org/licenses/MIT
 
-# server_strain -- System load indicator
+# server_strain: a Simple Relative System Strain indicator
+# Provides a single numeric score (0-100+) representing overall system strain.
 #   0   = near idle
 #   100 = fully utilized, no bottlenecks
 #  >100 = bottlenecks forming (queuing, iowait, swap pressure)
