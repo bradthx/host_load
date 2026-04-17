@@ -27,6 +27,19 @@ $ ./server_strain.sh
 
 ---
 
+## Differences from system Load Average
+
+Load average is a single raw number the kernel maintains, the exponentially weighted average of runnable and uninterruptible tasks over 1, 5, and 15 minute windows. Its problems:
+
+1. It has no upper bound and no context. A load of 8.0 is fine on a 32-core machine but very bad on a 2-core one.
+
+2. It only counts tasks waiting for CPU or disk. A system melting under memory pressure or saturated network I/O can show a deceptively low load average.
+
+3. It tells you how many things are waiting, not how close to the edge you are.
+server_strain is a normalized, multi-signal score designed to answer a different question: "what fraction of this system's total capacity is being consumed right now?"
+
+A practical example: a 40-core server with load average 4.0 looks fine by load average (only 10% of cores busy). But if that same machine has 85% memory used and 25% iowait, server_strain would be around 90+. This is much closer to the truth that the system is under real pressure. Load average would give you no hint of that.
+
 ## Usage
 
 ```bash
